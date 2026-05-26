@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        #welcomeBanner{
+            background-color: blue;
+            color: white;
+            padding: 15px;
+        }
+        .hightlight{
+            background-color: yellow;
+        }
+        .event-image{
+            border: 3px solid black;
+            width: 200px;
+            height: 150px;
+        }
+        form{
+            border: 1px solid gray;
+            padding: 20px;
+            width: 400px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Navigation Section -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#contacts">Contacts</a>
+    <a href="help.html" target="_blank">Help</a>
+</nav>
+<section id="home">
+    <h1>Welcome to Community Portal</h1>
+    <div id="welcomeBanner">
+        Welcome User!
+        <span style="color:red; font-weight:bold;">
+            Special Offer!
+        </span>
+    </div>
+</section>
+
+<section id="events">
+    <h2>Events</h2>
+    <h2>Past Event Gallery</h2>
+    <table>
+        <tr>
+            <td>
+                <img ondblclick="enlargeImage()" src="images/event1.jpg" alt="Music Event" title="Music Festival" class="event-image">
+                <p>Music Festival</p>
+            </td>
+            <td>
+                <img ondblclick="enlargeImage()" src="images/event2.jpg" alt="Food event" title="Food Carnival" class="event-image">
+                <p>Food Carnival</p>
+            </td>
+            <td>
+                <img ondblclick="enlargeImage()" src="images/event3.jpg" alt="Sports event" title="Sports Meet" class="event-image">
+                <p>Sports Meet</p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form id="registrationForm">
+
+    <input type="text"
+           placeholder="Enter Name"
+           required
+           autofocus>
+
+    <br><br>
+    <input type="phone_number" placeholder="Enter Contact Number" required autofocus onblur="validatePhone()">
+    <br><br>
+
+    <input type="email" placeholder="Enter Email" required>
+
+    <br><br>
+
+    <input type="date" required>
+
+    <br><br>
+
+    <select onchange="showFee()" id="eventType">
+        <option>Music</option>
+        <option>Sports</option>
+        <option>Workshop</option>
+    </select>
+
+    <br><br>
+
+    <textarea onkeyup="countChars()" placeholder="Enter Message"></textarea>
+    <p>Characters: <span id="charCount">0</span></p>
+
+    <br>
+    <button onclick="confirmSubmission()" type="submit">
+        Register
+    </button>
+    <button onclick="clearPrefs()">Clear</button>
+    <br><br>
+
+    <output id="message"></output>
+</form>
+
+<video width="400" controls oncanplay="alert('Video ready to play')">
+
+    <source src="videos/event.mp4"
+            type="video/mp4">
+
+</video>
+</section>
+<button onclick="findlocation()">Find Nearby Location</button>
+<p id="location"></p>
+
+
+<script>
+    function validatePhone(){
+        alert("Phone validated");
+    }
+    function showFee(){
+        let event = document.getElementById("eventType").value;
+        if(event=="Music"){
+            alert("Fee: 100");
+        }
+    }
+    function confirmSubmission(){
+        document.getElementById("message").innerHTML="Registration successfull";
+    }
+    function enlargeImage(){
+        image.style.width="400px";
+    }
+    function countChars(){
+        let chars=document.getElementById("feedback").value;
+        document.getElementById("charCount").innerHTML=text.length;
+    }
+    window.onbeforeunload = function(){
+    return "Are you sure?";
+    }
+
+    function savePreference(){
+        let selected=document.getElementById("eventType");
+        localStorage.setItem("preferredevent", selected);
+    }
+    window.onload=function(){
+        let saved=localStorage.getItem("preferredevent");
+        if(saved){
+            document.getElementById("eventType").value;
+            saved;
+        }
+    }
+    function clearPrefs(){
+        localStorage.clear();
+        sessionStorage.clear();
+    }
+    function findlocation(){
+        navigation.geolocation.getCurrentLocation(success,error,{
+            enableHighAccuracy: true,
+            timeout:5000
+        });
+    }
+    function success(position){
+        document.getElementById("location").innerHTML="Latitue: "+position.coords.latitude+"<br>Longitude: "+position.coords.longitude;
+
+    }
+    function error(){
+        alert("Location access denied");
+    }
+</script>
+    
+</body>
+<footer>
+
+</footer>
+</html>

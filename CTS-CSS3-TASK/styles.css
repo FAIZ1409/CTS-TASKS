@@ -1,0 +1,139 @@
+/*Universal Styles*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url('images/background.jpg');
+    background-color: rgba(240,240,240,0.9);
+    background-size: cover;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/*Header styles*/
+
+#mainHeader{
+    background: linear-gradient(to right, #007BFF,#00C6FF);
+    padding: 20px;
+}
+
+/*Navigation Styles*/
+
+.navMenu{
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navMenu li{
+    padding: 20px;
+}
+
+a:link{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    color: yellow;
+}
+
+a:visited{
+    color: lightgray;
+}
+
+a:active{
+    color: red;
+}
+
+
+/*Heading Styles*/
+
+h2{
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left: 10px;
+}
+
+h3, p{
+    margin-bottom: 10px;
+    padding-left: 10px;
+    text-align: justify;
+}
+
+
+/*Event Card Styles*/
+
+.eventCard{
+    background-color: white;
+    border: 2px solid #ccc;
+    padding: 2px;
+    margin: 20px 0px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Table Display */
+
+table{
+    width: 100%;
+    border-collapse:collapse;
+    margin-top: 20px;
+}
+th,td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+th{
+    background-color: #007BFF;
+    color: white;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+
+/*Multi-column Layout*/
+
+.newsSection p{
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+}
+
+
+/* Form Outline Example */
+input:focus{
+    outline: 3px solid blue;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .navMenu{
+        flex-direction: column;
+    }
+    body{
+        font-size: 14px;
+    }
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+    .eventCard{
+        width: 90%;
+    }
+
+}
